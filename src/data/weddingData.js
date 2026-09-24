@@ -33,6 +33,8 @@ export const weddingData = {
   storySubtitle: "Every step has led us to this sacred moment.",
   
   // Media Assets
+  heroVideo: "/video/hero-1.mp4",
+  heroPoster: "/video/hero-frame.jpg",
   coverImage: "/images/cover/cover.jpg",
   couplePhotos: [
     {
