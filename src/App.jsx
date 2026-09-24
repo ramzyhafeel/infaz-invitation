@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
 
 import LoadingScreen from './components/LoadingScreen';
 import InvitationCover from './components/InvitationCover';
@@ -16,6 +15,7 @@ import Footer from './components/Footer';
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [triggerPetals, setTriggerPetals] = useState(false);
 
@@ -28,7 +28,13 @@ export default function App() {
   }, []);
 
   const handleOpenInvitation = () => {
-    setIsOpened(true);
+    if (isOpening) return;
+    setIsOpening(true);
+
+    // Smoothly finish transition and unmount cover after 1.45s
+    setTimeout(() => {
+      setIsOpened(true);
+    }, 1450);
   };
 
   const handleDateRevealed = () => {
@@ -40,18 +46,16 @@ export default function App() {
       {/* 1. Initial Loading Screen */}
       <LoadingScreen isLoaded={isLoaded} />
 
-      {/* 2. Opening Invitation Cover (Tap to Open) */}
-      <AnimatePresence>
-        {!isOpened && (
-          <InvitationCover
-            isOpen={isOpened}
-            onOpen={handleOpenInvitation}
-          />
-        )}
-      </AnimatePresence>
+      {/* 2. Opening Invitation Cover (Cinematic Gate & Gold Flare) */}
+      {!isOpened && (
+        <InvitationCover
+          isOpening={isOpening}
+          onOpen={handleOpenInvitation}
+        />
+      )}
 
       {/* 3. Background Audio Player (Begins upon user tap) */}
-      <MusicPlayer shouldPlay={isOpened} />
+      <MusicPlayer shouldPlay={isOpening} />
 
       {/* Floral celebration effect when date is scratched */}
       <PetalEffect active={triggerPetals} />
@@ -59,8 +63,9 @@ export default function App() {
       {/* Main Wedding Content */}
       <main
         style={{
-          opacity: isOpened ? 1 : 0,
-          transition: 'opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1)'
+          opacity: isOpening ? 1 : 0,
+          transform: isOpening ? 'translateY(0)' : 'translateY(24px)',
+          transition: 'opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1)'
         }}
       >
         {/* 4. Cinematic Hero Section */}
@@ -84,7 +89,7 @@ export default function App() {
         {/* 10. Wedding & Venue Details with Google Maps Button */}
         <VenueSection />
 
-        {/* 12. Emotional Closing Footer */}
+        {/* 11. Emotional Closing Footer */}
         <Footer />
       </main>
     </div>

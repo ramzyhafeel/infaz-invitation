@@ -2,77 +2,130 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { weddingData } from '../data/weddingData';
 
-export default function InvitationCover({ isOpen, onOpen }) {
-  if (isOpen) return null;
-
+export default function InvitationCover({ isOpening, onOpen }) {
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{
-        opacity: 0,
-        scale: 1.05,
-        filter: 'blur(8px)',
-        transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] }
-      }}
+    <div
       style={{
         position: 'fixed',
         inset: 0,
         zIndex: 9000,
-        backgroundColor: 'var(--ivory)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'clamp(1rem, 4vw, 2rem)',
         minHeight: '100svh',
         overflow: 'hidden',
         userSelect: 'none',
-        WebkitUserSelect: 'none'
+        WebkitUserSelect: 'none',
+        pointerEvents: isOpening ? 'none' : 'auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 'clamp(1rem, 4vw, 2rem)'
       }}
-      onClick={onOpen}
+      onClick={!isOpening ? onOpen : undefined}
       role="button"
       tabIndex={0}
       aria-label="Tap to open wedding invitation"
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (!isOpening && (e.key === 'Enter' || e.key === ' ')) {
           e.preventDefault();
           onOpen();
         }
       }}
     >
-      {/* Background Decorative Paper Tint & Glow */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 50% 45%, #fffdf8 0%, #f4ecdc 70%, #eadfc9 100%)',
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Floating Gold Glow Particle Effect */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '320px',
-          height: '320px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(234, 216, 176, 0.45) 0%, transparent 70%)',
-          filter: 'blur(30px)',
-          pointerEvents: 'none'
-        }}
-      />
-
-      {/* Main Luxury Invitation Card Enclosure */}
+      {/* LEFT ROYAL GATE PANEL */}
       <motion.div
-        initial={{ scale: 0.95, opacity: 0, y: 16 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ x: '0%' }}
+        animate={{ x: isOpening ? '-100%' : '0%' }}
+        transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          width: '50.2%',
+          background: 'linear-gradient(135deg, #fffdf8 0%, #f4ecdc 85%, #eadfc9 100%)',
+          borderRight: '1px solid var(--gold)',
+          boxShadow: '8px 0 30px rgba(41, 36, 31, 0.12)',
+          zIndex: 1
+        }}
+      >
+        {/* Subtle decorative vertical gold border */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: '12px',
+            width: '1px',
+            borderRight: '1px dashed rgba(196, 154, 74, 0.45)'
+          }}
+        />
+      </motion.div>
+
+      {/* RIGHT ROYAL GATE PANEL */}
+      <motion.div
+        initial={{ x: '0%' }}
+        animate={{ x: isOpening ? '100%' : '0%' }}
+        transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          width: '50.2%',
+          background: 'linear-gradient(225deg, #fffdf8 0%, #f4ecdc 85%, #eadfc9 100%)',
+          borderLeft: '1px solid var(--gold)',
+          boxShadow: '-8px 0 30px rgba(41, 36, 31, 0.12)',
+          zIndex: 1
+        }}
+      >
+        {/* Subtle decorative vertical gold border */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: '12px',
+            width: '1px',
+            borderLeft: '1px dashed rgba(196, 154, 74, 0.45)'
+          }}
+        />
+      </motion.div>
+
+      {/* GOLDEN LIGHT SWEEP FLARE (Sweeps across screen upon opening) */}
+      {isOpening && (
+        <motion.div
+          initial={{ opacity: 0, x: '-80%' }}
+          animate={{ opacity: [0, 0.85, 0], x: '180%' }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            bottom: '-20%',
+            width: '60%',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(255, 241, 184, 0.65) 50%, transparent 100%)',
+            transform: 'skewX(-25deg)',
+            zIndex: 10,
+            pointerEvents: 'none'
+          }}
+        />
+      )}
+
+      {/* CENTRAL LUXURY INVITATION CARD */}
+      <motion.div
+        initial={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
+        animate={{
+          scale: isOpening ? 1.07 : 1,
+          opacity: isOpening ? 0 : 1,
+          y: isOpening ? -24 : 0,
+          filter: isOpening ? 'blur(8px)' : 'blur(0px)'
+        }}
+        transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'relative',
+          zIndex: 2,
           width: '100%',
           maxWidth: '480px',
           minHeight: 'clamp(540px, 82vh, 680px)',
-          background: 'rgba(255, 253, 248, 0.95)',
+          background: 'rgba(255, 253, 248, 0.96)',
           backdropFilter: 'blur(10px)',
           border: '1px solid var(--border-gold)',
           boxShadow: '0 20px 60px rgba(41, 36, 31, 0.12), 0 2px 10px rgba(196, 154, 74, 0.15)',
@@ -82,7 +135,7 @@ export default function InvitationCover({ isOpen, onOpen }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           textAlign: 'center',
-          cursor: 'pointer'
+          cursor: isOpening ? 'default' : 'pointer'
         }}
       >
         {/* Inner Gold Foil Filigree Border */}
@@ -216,19 +269,27 @@ export default function InvitationCover({ isOpen, onOpen }) {
         {/* BOTTOM SECTION: Tap to Open Indicator */}
         <div style={{ marginBottom: '0.5rem', width: '100%' }}>
           <motion.div
-            animate={{
-              scale: [1, 1.04, 1],
-              boxShadow: [
-                '0 4px 16px rgba(196, 154, 74, 0.2)',
-                '0 8px 24px rgba(196, 154, 74, 0.38)',
-                '0 4px 16px rgba(196, 154, 74, 0.2)'
-              ]
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.8,
-              ease: 'easeInOut'
-            }}
+            animate={
+              isOpening
+                ? {
+                    scale: 1.2,
+                    boxShadow: '0 0 45px rgba(212, 175, 95, 0.9)',
+                    borderColor: 'var(--deep-gold)'
+                  }
+                : {
+                    scale: [1, 1.04, 1],
+                    boxShadow: [
+                      '0 4px 16px rgba(196, 154, 74, 0.2)',
+                      '0 8px 24px rgba(196, 154, 74, 0.38)',
+                      '0 4px 16px rgba(196, 154, 74, 0.2)'
+                    ]
+                  }
+            }
+            transition={
+              isOpening
+                ? { duration: 0.5, ease: 'easeOut' }
+                : { repeat: Infinity, duration: 2.8, ease: 'easeInOut' }
+            }
             style={{
               display: 'inline-flex',
               flexDirection: 'column',
@@ -238,7 +299,7 @@ export default function InvitationCover({ isOpen, onOpen }) {
               borderRadius: '9999px',
               background: 'linear-gradient(135deg, #fffdf8 0%, #faecd5 100%)',
               border: '1px solid var(--gold)',
-              cursor: 'pointer'
+              cursor: isOpening ? 'default' : 'pointer'
             }}
           >
             <span
@@ -251,7 +312,7 @@ export default function InvitationCover({ isOpen, onOpen }) {
                 textTransform: 'uppercase'
               }}
             >
-              Tap to Open
+              {isOpening ? 'Opening...' : 'Tap to Open'}
             </span>
           </motion.div>
 
@@ -268,6 +329,6 @@ export default function InvitationCover({ isOpen, onOpen }) {
           </p>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
