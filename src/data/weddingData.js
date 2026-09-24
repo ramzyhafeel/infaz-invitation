@@ -10,7 +10,7 @@ export const weddingData = {
   groom: "Mohamed Infaz",
   bride: "Fathima Hafsa",
   coupleName: "Mohamed Infaz & Fathima Hafsa",
-  initials: "I & F",
+  initials: "I & H",
   
   // Date & Time (Asia/Colombo UTC+05:30)
   date: "2027-04-25T13:00:00+05:30",
