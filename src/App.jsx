@@ -4,6 +4,7 @@ import LoadingScreen from './components/LoadingScreen';
 import InvitationCover from './components/InvitationCover';
 import MusicPlayer from './components/MusicPlayer';
 import HeroSection from './components/HeroSection';
+import ScrollIndicator from './components/ScrollIndicator';
 import InvitationMessage from './components/InvitationMessage';
 import ScratchReveal from './components/ScratchReveal';
 import PetalEffect from './components/PetalEffect';
@@ -67,10 +68,13 @@ export default function App() {
           transition: 'opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1)'
         }}
       >
-        {/* 4. Cinematic Video Hero Section (Mobile-first animated video) */}
-        <HeroSection isOpened={isOpening} />
+        {/* 4. Cinematic Hero Section */}
+        <HeroSection />
 
-        {/* 5. Emotional Invitation Message */}
+        {/* 5. Smooth Scroll Indicator */}
+        <ScrollIndicator />
+
+        {/* 6. Emotional Invitation Message */}
         <InvitationMessage />
 
         {/* 7. Interactive Scratch-to-Reveal Date */}

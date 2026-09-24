@@ -4,7 +4,7 @@ import { weddingData } from '../data/weddingData';
 
 export default function InvitationMessage() {
   return (
-    <section id="invitation-message" className="section-container" style={{ paddingTop: '2.5rem', paddingBottom: '3.5rem' }}>
+    <section className="section-container" style={{ paddingTop: '1rem', paddingBottom: '3rem' }}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

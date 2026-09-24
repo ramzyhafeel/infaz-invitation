@@ -10,7 +10,7 @@ export const weddingData = {
   groom: "Mohamed Infaz",
   bride: "Fathima Hafsa",
   coupleName: "Mohamed Infaz & Fathima Hafsa",
-  initials: "I & H",
+  initials: "I & F",
   
   // Date & Time (Asia/Colombo UTC+05:30)
   date: "2027-04-25T13:00:00+05:30",
@@ -33,13 +33,6 @@ export const weddingData = {
   storySubtitle: "Every step has led us to this sacred moment.",
   
   // Media Assets
-  heroVideos: [
-    { id: 1, src: "/video/hero-1.mp4", poster: "/video/hero-frame.jpg" },
-    { id: 2, src: "/video/hero-2.mp4", poster: "/video/hero-2-frame.jpg" },
-    { id: 3, src: "/video/hero-3.mp4", poster: "/video/hero-3-frame.jpg" }
-  ],
-  heroVideo: "/video/hero-1.mp4",
-  heroPoster: "/video/hero-frame.jpg",
   coverImage: "/images/cover/cover.jpg",
   couplePhotos: [
     {
