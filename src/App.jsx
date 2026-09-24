@@ -11,7 +11,6 @@ import ScratchReveal from './components/ScratchReveal';
 import PetalEffect from './components/PetalEffect';
 import Countdown from './components/Countdown';
 import PhotoSection from './components/PhotoSection';
-import Gallery from './components/Gallery';
 import VenueSection from './components/VenueSection';
 import Footer from './components/Footer';
 
