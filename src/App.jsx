@@ -78,13 +78,10 @@ export default function App() {
         {/* 8. Live Wedding Countdown */}
         <Countdown />
 
-        {/* 9. Cinematic Couple Photography & Full-width Section */}
+        {/* 9. Cinematic Couple Story & Full-width Section */}
         <PhotoSection />
 
-        {/* 10. Photo Gallery with Fullscreen Lightbox */}
-        <Gallery />
-
-        {/* 11. Wedding & Venue Details with Google Maps Button */}
+        {/* 10. Wedding & Venue Details with Google Maps Button */}
         <VenueSection />
 
         {/* 12. Emotional Closing Footer */}
