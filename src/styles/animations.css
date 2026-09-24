@@ -1,0 +1,136 @@
+/* ==========================================================================
+   CINEMATIC WEDDING ANIMATIONS
+   ========================================================================== */
+
+/* Gold Shimmer Effect for Headings and Accents */
+.gold-shimmer {
+  background: var(--gold-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shineGold 8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes shineGold {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* Subtle Gentle Pulse */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.035);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-gentle {
+  animation: gentlePulse 3.5s ease-in-out infinite;
+}
+
+/* Floating Music Icon Rotation */
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: rotateSlow 14s linear infinite;
+}
+
+/* Scroll Indicator Float */
+@keyframes floatDown {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.animate-float-down {
+  animation: floatDown 2.2s ease-in-out infinite;
+}
+
+/* Petal Floating Keyframes */
+@keyframes petalDrift {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(420px) translateX(var(--drift-x, 80px)) rotate(var(--rot-z, 360deg)) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Shimmer Border */
+.gold-border-shine {
+  position: relative;
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              var(--gold-gradient) border-box;
+  border: 1px solid transparent;
+  background-size: 100% 100%, 200% 200%;
+  animation: shineBorder 10s ease infinite;
+}
+
+@keyframes shineBorder {
+  0% {
+    background-position: 0% 0%, 0% 50%;
+  }
+  50% {
+    background-position: 0% 0%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 0% 50%;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gold-shimmer {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+
+  .animate-spin-slow,
+  .animate-pulse-gentle,
+  .animate-float-down {
+    animation: none !important;
+  }
+}

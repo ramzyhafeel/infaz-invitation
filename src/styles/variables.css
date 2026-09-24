@@ -1,0 +1,51 @@
+:root {
+  /* Color Palette */
+  --ivory: #faf7f0;
+  --warm-white: #fffdf8;
+  --champagne: #ead8b0;
+  --gold: #c49a4a;
+  --deep-gold: #a5772c;
+  --soft-brown: #7c6653;
+  --dark: #29241f;
+  --muted: #8c8177;
+  --border-light: rgba(196, 154, 74, 0.22);
+  --border-gold: rgba(196, 154, 74, 0.45);
+  --card-bg: rgba(255, 253, 248, 0.92);
+  --glass-bg: rgba(250, 247, 240, 0.88);
+  --overlay-dark: rgba(41, 36, 31, 0.75);
+
+  /* Gold Gradients */
+  --gold-gradient: linear-gradient(
+    90deg,
+    #b78a3f 0%,
+    #f5df9b 25%,
+    #c99848 50%,
+    #fff1b8 75%,
+    #b78a3f 100%
+  );
+  --gold-foil: linear-gradient(135deg, #d4af37 0%, #eddca8 35%, #aa771c 70%, #fdf5d5 100%);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout & Spacing */
+  --container-max: 1140px;
+  --content-max: 820px;
+  --section-pad-y: clamp(4.5rem, 10vw, 7.5rem);
+  --section-pad-x: clamp(1.25rem, 5vw, 2.5rem);
+
+  /* Elevation & Shadows */
+  --shadow-subtle: 0 4px 20px -2px rgba(41, 36, 31, 0.04);
+  --shadow-card: 0 12px 36px -4px rgba(41, 36, 31, 0.08);
+  --shadow-gold: 0 8px 28px -4px rgba(196, 154, 74, 0.25);
+
+  /* Smooth Transitions */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* iOS Safe Area Viewport */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
