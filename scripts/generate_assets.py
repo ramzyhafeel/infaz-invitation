@@ -68,7 +68,7 @@ def create_monogram_image(filename, width=1200, height=1600, subtitle="THE WEDDI
     draw.ellipse([cx - r, cy - r, cx + r, cy + r], outline=C_CHAMPAGNE, width=2)
     draw.ellipse([cx - r + 15, cy - r + 15, cx + r - 15, cy + r - 15], outline=C_GOLD, width=1)
 
-    # Draw Monogram initials "I & F"
+    # Draw Monogram initials "I & H"
     try:
         font_large = ImageFont.truetype("arial.ttf", 140)
         font_mid = ImageFont.truetype("georgia.ttf", 60)
@@ -77,7 +77,7 @@ def create_monogram_image(filename, width=1200, height=1600, subtitle="THE WEDDI
     except:
         font_large = font_mid = font_small = font_tiny = ImageFont.load_default()
 
-    draw.text((cx, cy - 20), "I & F", fill=C_DEEP_GOLD, font=font_large, anchor="mm")
+    draw.text((cx, cy - 20), "I & H", fill=C_DEEP_GOLD, font=font_large, anchor="mm")
     draw.text((cx, cy + 90), "25 . 04 . 2027", fill=C_MUTED, font=font_tiny, anchor="mm")
 
     # Titles below
@@ -201,7 +201,7 @@ def create_favicon(filename, size=512):
     except:
         font_mono = font_sub = ImageFont.load_default()
 
-    draw.text((cx, cy - 20), "I & F", fill=C_DEEP_GOLD, font=font_mono, anchor="mm")
+    draw.text((cx, cy - 20), "I & H", fill=C_DEEP_GOLD, font=font_mono, anchor="mm")
     draw.text((cx, cy + 110), "2027", fill=C_MUTED, font=font_sub, anchor="mm")
 
     os.makedirs(os.path.dirname(filename), exist_ok=True)

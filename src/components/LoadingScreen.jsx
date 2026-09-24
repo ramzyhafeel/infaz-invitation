@@ -58,7 +58,7 @@ export default function LoadingScreen({ isLoaded }) {
                 fontWeight: 500
               }}
             >
-              I & F
+              I & H
             </span>
           </motion.div>
 
