@@ -95,32 +95,34 @@ def create_monogram_image(filename, width=1200, height=1600, subtitle="THE WEDDI
     img.save(filename, quality=94)
     print(f"Created {filename}")
 
-def create_couple_photo(filename, title, subtitle, width=1000, height=1300):
+def draw_floral_motif(draw, cx, cy, radius, color):
+    num_petals = 12
+    for i in range(num_petals):
+        angle = i * (2 * math.pi / num_petals)
+        px = cx + radius * 0.7 * math.cos(angle)
+        py = cy + radius * 0.7 * math.sin(angle)
+        draw.ellipse((px - radius*0.35, py - radius*0.35, px + radius*0.35, py + radius*0.35), outline=color, width=1)
+    draw.ellipse((cx - radius*0.3, cy - radius*0.3, cx + radius*0.3, cy + radius*0.3), outline=color, width=1)
+
+def create_couple_photo(filename, title, subtitle, width=1200, height=1500):
     img = Image.new("RGB", (width, height), C_WARM_WHITE)
-    draw_gradient_background(img, (246, 240, 230), (236, 226, 212))
+    draw_gradient_background(img, (244, 237, 226), (226, 212, 194))
     draw = ImageDraw.Draw(img)
 
-    margin = 36
+    margin = 40
     draw.rectangle([margin, margin, width - margin, height - margin], outline=C_GOLD, width=1)
-    draw_corner_ornaments(draw, width, height, margin=margin + 10, size=40, color=C_DEEP_GOLD)
+    draw_corner_ornaments(draw, width, height, margin=margin + 12, size=50, color=C_DEEP_GOLD)
 
     cx, cy = width // 2, height // 2
-    # Decorative arched frame
-    arch_w, arch_h = width - 180, height - 260
-    draw.rectangle([cx - arch_w//2, cy - arch_h//2, cx + arch_w//2, cy + arch_h//2], outline=C_CHAMPAGNE, width=2)
+    # Decorative ornamental arch & rings without burned-in text
+    draw.ellipse((cx - 260, cy - 260, cx + 260, cy + 260), outline=C_CHAMPAGNE, width=2)
+    draw.ellipse((cx - 240, cy - 240, cx + 240, cy + 240), outline=C_GOLD, width=1)
+    draw_floral_motif(draw, cx, cy, 200, (196, 154, 74, 180))
 
-    try:
-        font_large = ImageFont.truetype("georgia.ttf", 64)
-        font_mid = ImageFont.truetype("georgia.ttf", 34)
-        font_small = ImageFont.truetype("arial.ttf", 24)
-    except:
-        font_large = font_mid = font_small = ImageFont.load_default()
-
-    draw.text((cx, cy - 60), "I & F", fill=C_GOLD, font=font_large, anchor="mm")
-    draw.line([(cx - 80, cy), (cx + 80, cy)], fill=C_DEEP_GOLD, width=1)
-    draw.text((cx, cy + 50), title.upper(), fill=C_DARK, font=font_mid, anchor="mm")
-    draw.text((cx, cy + 95), subtitle, fill=C_MUTED, font=font_small, anchor="mm")
-    draw.text((cx, cy + 140), "Mohamed Infaz & Fathima Hafsa", fill=C_DEEP_GOLD, font=font_small, anchor="mm")
+    # Two intertwined golden rings motif
+    ring_r = 70
+    draw.ellipse((cx - 50 - ring_r, cy - ring_r, cx - 50 + ring_r, cy + ring_r), outline=C_DEEP_GOLD, width=4)
+    draw.ellipse((cx + 50 - ring_r, cy - ring_r, cx + 50 + ring_r, cy + ring_r), outline=C_GOLD, width=4)
 
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     img.save(filename, quality=94)
@@ -128,37 +130,26 @@ def create_couple_photo(filename, title, subtitle, width=1000, height=1300):
 
 def create_gallery_photo(filename, index, title, width=1000, height=1000):
     img = Image.new("RGB", (width, height), C_IVORY)
-    # Subtle tint variety
     tints = [
-        ((250, 246, 240), (242, 234, 220)),
-        ((248, 242, 236), (238, 226, 218)),
-        ((245, 245, 238), (232, 232, 220)),
-        ((252, 248, 242), (245, 236, 225)),
-        ((246, 243, 239), (235, 228, 220)),
-        ((250, 245, 242), (240, 230, 225)),
+        ((250, 246, 240), (240, 230, 215)),
+        ((248, 242, 236), (236, 222, 212)),
+        ((245, 245, 238), (230, 228, 216)),
+        ((252, 248, 242), (242, 232, 220)),
+        ((246, 243, 239), (232, 224, 215)),
+        ((250, 245, 242), (238, 226, 218)),
     ]
     t1, t2 = tints[(index - 1) % len(tints)]
     draw_gradient_background(img, t1, t2)
     draw = ImageDraw.Draw(img)
 
-    margin = 30
+    margin = 32
     draw.rectangle([margin, margin, width - margin, height - margin], outline=C_CHAMPAGNE, width=1)
-    draw.rectangle([margin + 8, margin + 8, width - margin - 8, height - margin - 8], outline=C_GOLD, width=1)
+    draw.rectangle([margin + 10, margin + 10, width - margin - 10, height - margin - 10], outline=C_GOLD, width=1)
 
     cx, cy = width // 2, height // 2
-    # Inner circle or diamond
-    draw.ellipse([cx - 160, cy - 160, cx + 160, cy + 160], outline=C_GOLD, width=1)
-
-    try:
-        font_large = ImageFont.truetype("georgia.ttf", 52)
-        font_mid = ImageFont.truetype("georgia.ttf", 28)
-        font_small = ImageFont.truetype("arial.ttf", 20)
-    except:
-        font_large = font_mid = font_small = ImageFont.load_default()
-
-    draw.text((cx, cy - 30), f"Moment 0{index}", fill=C_GOLD, font=font_large, anchor="mm")
-    draw.text((cx, cy + 30), title, fill=C_DARK, font=font_mid, anchor="mm")
-    draw.text((cx, cy + 68), "Infaz & Hafsa", fill=C_MUTED, font=font_small, anchor="mm")
+    # Artistic mandala floral decoration
+    draw_floral_motif(draw, cx, cy, 140, (196, 154, 74, 160))
+    draw.ellipse((cx - 150, cy - 150, cx + 150, cy + 150), outline=C_CHAMPAGNE, width=1)
 
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     img.save(filename, quality=94)

@@ -116,11 +116,12 @@ export default function PhotoSection() {
         style={{
           position: 'relative',
           width: '100%',
-          minHeight: 'clamp(380px, 58vh, 520px)',
+          minHeight: 'clamp(420px, 60vh, 560px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: '2.5rem 0 4rem 0',
+          margin: '3rem 0 4.5rem 0',
+          padding: '2.5rem 1.25rem',
           overflow: 'hidden'
         }}
       >
@@ -139,15 +140,16 @@ export default function PhotoSection() {
           }}
         />
 
-        {/* Soft Luxury Cream & Dark Overlays */}
+        {/* Soft Dimming Overlay to preserve photo beauty while giving contrast */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(250, 247, 240, 0.75) 0%, rgba(41, 36, 31, 0.45) 50%, rgba(250, 247, 240, 0.85) 100%)'
+            background: 'linear-gradient(180deg, rgba(250, 247, 240, 0.6) 0%, rgba(26, 21, 16, 0.45) 50%, rgba(250, 247, 240, 0.7) 100%)'
           }}
         />
 
+        {/* Framed Luxury Glassmorphic Quote Card */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -157,40 +159,70 @@ export default function PhotoSection() {
             position: 'relative',
             zIndex: 2,
             textAlign: 'center',
-            padding: '2rem 1.5rem',
-            maxWidth: '680px'
+            padding: 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 2.75rem)',
+            maxWidth: '680px',
+            width: '100%',
+            backgroundColor: 'rgba(28, 22, 17, 0.82)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(212, 175, 95, 0.45)',
+            borderRadius: '12px',
+            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.35)'
           }}
         >
+          {/* Inner decorative border */}
           <div
             style={{
-              display: 'inline-block',
-              width: '40px',
-              height: '1px',
-              backgroundColor: 'var(--champagne)',
-              marginBottom: '1rem'
+              position: 'absolute',
+              inset: '8px',
+              border: '1px solid rgba(234, 216, 176, 0.25)',
+              borderRadius: '8px',
+              pointerEvents: 'none'
             }}
           />
-          <h3
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(1.75rem, 5vw, 2.75rem)',
-              color: '#fffdf8',
-              lineHeight: 1.35,
-              fontWeight: 500,
-              textShadow: '0 2px 14px rgba(0, 0, 0, 0.45)',
-              marginBottom: '0.75rem'
-            }}
-          >
-            {weddingData.storyQuote}
-          </h3>
+
           <p
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
-              letterSpacing: '0.2em',
+              fontSize: '0.72rem',
+              letterSpacing: '0.24em',
               textTransform: 'uppercase',
-              color: '#f5df9b',
-              textShadow: '0 1px 8px rgba(0, 0, 0, 0.5)'
+              color: 'var(--champagne)',
+              marginBottom: '1rem',
+              fontWeight: 500
+            }}
+          >
+            A Sacred Journey
+          </p>
+
+          <h3
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(1.6rem, 4.5vw, 2.35rem)',
+              color: '#fffdf8',
+              lineHeight: 1.35,
+              fontWeight: 500,
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+              marginBottom: '1rem'
+            }}
+          >
+            "{weddingData.storyQuote}"
+          </h3>
+
+          <div className="ornamental-divider" style={{ margin: '1rem auto' }}>
+            <span className="divider-line" style={{ background: 'linear-gradient(90deg, transparent, var(--champagne), transparent)' }} />
+            <span className="divider-icon" style={{ backgroundColor: 'var(--champagne)' }} />
+            <span className="divider-line" style={{ background: 'linear-gradient(90deg, transparent, var(--champagne), transparent)' }} />
+          </div>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.82rem',
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: '#eddca8',
+              lineHeight: 1.6
             }}
           >
             {weddingData.storySubtitle}
